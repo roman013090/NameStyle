@@ -1,29 +1,9 @@
-
 import React, { useState, useMemo, useCallback, useDeferredValue } from 'react';
 import Header from './components/Header';
 import StyleCard from './components/StyleCard';
 import { generateAllStyles } from './services/styleEngine';
 import { StyleCategory } from './types';
 import { SYMBOLS_GAMER, SYMBOLS_AESTHETIC, FONT_MAPS, SYMBOLS_ARROW } from './constants';
-
-const AdZone: React.FC<{ type: 'Banner' | 'Native' | 'SocialBar' | 'Popunder' }> = ({ type }) => {
-  if (type === 'Popunder') return null;
-
-  return (
-    <div className={`ad-wrapper my-8 flex flex-col items-center justify-center border-2 border-dashed border-indigo-500/20 rounded-[2.5rem] bg-slate-900/40 p-10 overflow-hidden transition-all hover:border-indigo-500/40 ${
-      type === 'SocialBar' ? 'fixed bottom-4 left-4 right-4 z-[300] !m-0 bg-slate-950/95 backdrop-blur-3xl border-indigo-500/40 h-24 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.8)]' : 
-      type === 'Banner' ? 'h-48 w-full max-w-6xl mx-auto' : 
-      type === 'Native' ? 'h-72 w-full' : ''
-    }`}>
-      <div className="flex flex-col items-center opacity-40 group hover:opacity-100 transition-opacity">
-        <div className="w-12 h-12 bg-indigo-600/20 rounded-full flex items-center justify-center mb-4 border border-indigo-500/30">
-           <span className="text-indigo-400 font-black text-[11px]">ADS</span>
-        </div>
-        <p className="text-indigo-400 font-bold uppercase tracking-[0.4em] text-[11px]">Monetag {type} Verified Placement</p>
-      </div>
-    </div>
-  );
-};
 
 const MemoizedStyleCard = React.memo(StyleCard);
 
@@ -53,7 +33,6 @@ const App: React.FC = () => {
   const handleGenerateRefresh = useCallback(() => {
     setRefreshKey(prev => prev + 1);
     setVisibleCount(200);
-    // Removed window.scrollTo to prevent unwanted page movement
   }, []);
 
   const categories = useMemo(() => [
@@ -85,7 +64,7 @@ const App: React.FC = () => {
       
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8">
         
-        <AdZone type="Banner" />
+        {/* Banner Ad Box Removed */}
 
         <section className="text-center mb-10">
           <header>
@@ -110,7 +89,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 11 OPTION CATEGORY BAR - COMPACT DESIGN */}
+        {/* 11 OPTION CATEGORY BAR */}
         <section className="mb-12 bg-black/80 backdrop-blur-3xl p-6 md:p-8 rounded-[3rem] shadow-4xl border border-white/5 mx-auto max-w-5xl">
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {categories.map((cat) => (
@@ -129,7 +108,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <AdZone type="Native" />
+        {/* Native Ad Box Removed */}
 
         {activeCategory === 'CUSTOM' ? (
           <section className="card-glass p-12 rounded-[4rem] animate-fade-in border-indigo-500/10">
@@ -181,13 +160,8 @@ const App: React.FC = () => {
         ) : (
           <>
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-              {displayedStyles.map((style, index) => (
+              {displayedStyles.map((style) => (
                 <React.Fragment key={style.id}>
-                   {index > 0 && index % 120 === 0 && (
-                     <div className="col-span-full">
-                        <AdZone type="Native" />
-                     </div>
-                   )}
                    <MemoizedStyleCard text={style.text} category={style.category} />
                 </React.Fragment>
               ))}
@@ -195,7 +169,6 @@ const App: React.FC = () => {
 
             {visibleCount < filteredStyles.length && (
               <div className="mt-16 flex flex-col items-center gap-12">
-                <AdZone type="Banner" />
                 <button
                   onClick={handleGenerateRefresh}
                   className="px-20 py-8 bg-slate-950 border-4 border-indigo-600 text-white font-black text-2xl md:text-3xl rounded-[3rem] hover:bg-indigo-600 transition-all shadow-4xl hover:shadow-indigo-600/50 scale-100 hover:scale-105 active:scale-95 uppercase tracking-tighter"
@@ -208,7 +181,7 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <AdZone type="SocialBar" />
+      {/* SocialBar Ad Box Removed */}
 
       <footer className="bg-slate-950 border-t-4 border-indigo-500/5 py-24 px-12">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-16">
