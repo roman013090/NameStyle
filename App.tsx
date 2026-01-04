@@ -60,20 +60,7 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#020617] text-slate-100 pb-32">
-      {/* Header with moved button logic */}
-      <div className="relative">
-        <Header /> {/* Right side button hidden by removing onGenerate prop */}
-        
-        {/* NEW CENTERED BUTTON AS PER SCREENSHOT */}
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-[100] hidden md:block">
-           <button 
-             onClick={handleGenerateRefresh}
-             className="px-6 py-2.5 bg-[#4f46e5] hover:bg-[#6366f1] text-white text-[11px] font-black rounded-xl transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] uppercase tracking-widest active:scale-95"
-           >
-             GENERATE 40,000+ STYLES
-           </button>
-        </div>
-      </div>
+      <Header onGenerate={handleGenerateRefresh} />
       
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8">
         
