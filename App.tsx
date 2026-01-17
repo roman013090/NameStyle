@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useDeferredValue } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/Header';
 import StyleCard from './components/StyleCard';
 import { generateAllStyles } from './services/styleEngine';
@@ -196,6 +197,8 @@ const App: React.FC = () => {
            </div>
         </div>
       </footer>
+
+      <SpeedInsights />
     </div>
   );
 };
